@@ -35,3 +35,4 @@ class replies: #TEXT FOR REPLIES
     DONE = '✅ Done ✅'
     DWN_ERROR = '🚨 DOWNLOAD ERROR! 🚨'
     EXC_ERROR = '🚨 EXCEPTION ERROR! 🚨'
+    TIKTOK_ERROR = '🚨 TikTok is no longer supported 😞 🚨'

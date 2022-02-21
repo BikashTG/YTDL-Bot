@@ -91,15 +91,18 @@ def function_name(message):
         global cid
         cid = message.chat.id
         url = re.search("(?P<url>https?://[^\s'\"]+)", message.text).group("url")
-        markup = telebot.types.InlineKeyboardMarkup()
-        markup.add(
-            telebot.types.InlineKeyboardButton(text='MP4 📹', callback_data='dl'),
-            telebot.types.InlineKeyboardButton(text='MP3 🎵', callback_data='dlmp3'),
-        )
-        markup.add(telebot.types.InlineKeyboardButton(text='CANCEL DOWNLOAD 🛑', callback_data='canceldl'))
-        msg = bot.send_message(message.chat.id, '<b>URL: </b>' + '' + url + '<b>\nSelect Download Option</b> ⬇️', reply_markup=markup, disable_web_page_preview=True, parse_mode='HTML')
-        msgid = msg.message_id
-        msgcid = msg.chat.id
+        if 'vm.tiktok.com' in url:
+            print_log('video', 'TIKTOK_ERROR', message.chat.id, url, message, bot)
+        else:
+            markup = telebot.types.InlineKeyboardMarkup()
+            markup.add(
+                telebot.types.InlineKeyboardButton(text='MP4 📹', callback_data='dl'),
+                telebot.types.InlineKeyboardButton(text='MP3 🎵', callback_data='dlmp3'),
+            )
+            markup.add(telebot.types.InlineKeyboardButton(text='CANCEL DOWNLOAD 🛑', callback_data='canceldl'))
+            msg = bot.send_message(message.chat.id, '<b>URL: </b>' + '' + url + '<b>\nSelect Download Option</b> ⬇️', reply_markup=markup, disable_web_page_preview=True, parse_mode='HTML')
+            msgid = msg.message_id
+            msgcid = msg.chat.id
     except Exception as exception:
         print_except(exception, message.chat.id, url, bot)
 

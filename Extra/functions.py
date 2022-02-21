@@ -15,16 +15,13 @@ from Extra.classes import bcolors, replies
 # case: STATUS [OK or TYPE_ERROR]
 # message: message handler for reply_to
 
-def is_supported(url, chatid, bot): #CHECK IS URL IS SUPPORTED
+def is_supported(url, chatid, bot): #CHECK IF URL IS SUPPORTED
     try:
-        if 'vm.tiktok.com' in url:
-            return True
-        else:
-            ies = youtube_dl.extractor.gen_extractors()
-            for ie in ies:
-                if ie.suitable(url) and ie.IE_NAME != 'generic':
-                    return True
-            return False
+        ies = youtube_dl.extractor.gen_extractors()
+        for ie in ies:
+            if ie.suitable(url) and ie.IE_NAME != 'generic':
+                return True
+        return False
     except Exception as error:
             print_except(error, chatid, url, bot)
 

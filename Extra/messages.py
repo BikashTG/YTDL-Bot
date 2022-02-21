@@ -40,6 +40,13 @@ def print_log(typem, case, chatid, url, message, bot):
 		bot.send_message(chatid, replies.DWN_ERROR)
 		return
 
+	if case == 'TIKTOK_ERROR':
+		print('\n' + bcolors.FAIL + 'REQUEST FOR ' + typem + ' FAILED: TikTok URL\n'
+		+ bcolors.OKGREEN + 'Chat ID: '+ bcolors.OKCYAN + str(chatid) + '\n'
+		+ bcolors.OKGREEN + 'URL: '+ bcolors.OKCYAN + url + bcolors.ENDC)
+		reply_error(message, 3, bot)
+		return
+
 def print_except(exception, chatid, url, bot):
 	print('\n' + bcolors.FAIL + 'Exception ERROR: ' + str(exception) + '\n'
 	+ bcolors.OKGREEN + 'Chat ID: '+ bcolors.OKCYAN + str(chatid) + '\n'
@@ -54,4 +61,8 @@ def reply_error(message, error_status, bot):
 
 	if error_status == 2:
 		bot.reply_to(message, replies.SUPP_ERROR)
+		return
+	
+	if error_status == 3:
+		bot.reply_to(message, replies.TIKTOK_ERROR)
 		return
