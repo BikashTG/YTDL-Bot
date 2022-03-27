@@ -34,3 +34,10 @@ bot = telebot.TeleBot("YOUR_TOKEN")
 ```
 
 Then just run ```python bot.py``` and the bot is ready to use.
+
+## License
+
+The GNU General Public License v3 (GPL-3)
+
+Copyright © 2022 somedevv
+
